@@ -8,6 +8,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "customers")
+@JsonIgnoreProperties(value =
+    {"hasvalueforgetOpeningamt", "hasvalueforgetOutstandingamt",
+        "hasvalueforgetPaymentamt", "hasvalueforgetRecieveamt"})   //ignores this val in database only need it for patch method
 public class Customer
 {
     //fields
@@ -17,16 +20,34 @@ public class Customer
     private long custcode;
 
     private String custcity;
+
     private String custcountry;
 
     private String custname;
 
     private String grade;
+
     private double openingamt;
+
+    @Transient                          // use transient so we doesnt exist on database
+    public boolean hasvalueforgetOpeningamt = false;
+
     private double outstandingamt;
+
+    @Transient
+    public boolean hasvalueforgetOutstandingamt = false;
+
     private double paymentamt;
+
+    @Transient
+    public boolean hasvalueforgetPaymentamt = false;
+
     private String phone;
+
     private double recieveamt;
+
+    @Transient
+    public boolean hasvalueforgetRecieveamt = false;
     private String workingarea;
 
     //fields with relationships (one to many and many to many)
@@ -132,6 +153,7 @@ public class Customer
 
     public void setOpeningamt(double openingamt)
     {
+        hasvalueforgetOpeningamt = true;
         this.openingamt = openingamt;
     }
 
@@ -142,6 +164,7 @@ public class Customer
 
     public void setOutstandingamt(double outstandingamt)
     {
+        hasvalueforgetOutstandingamt = true;
         this.outstandingamt = outstandingamt;
     }
 
@@ -152,6 +175,7 @@ public class Customer
 
     public void setPaymentamt(double paymentamt)
     {
+        hasvalueforgetPaymentamt = true;
         this.paymentamt = paymentamt;
     }
 
@@ -172,6 +196,7 @@ public class Customer
 
     public void setRecieveamt(double recieveamt)
     {
+        hasvalueforgetRecieveamt = true;
         this.recieveamt = recieveamt;
     }
 
