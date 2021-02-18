@@ -22,9 +22,9 @@ public class Agent
     private String country;
 
 
-    // one to many relationship with customer
+    // one to many relationship with customer // review many to one, one ot one, many to many
     @OneToMany(mappedBy = "agent", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnoreProperties(value = "target", allowSetters = true)
+    @JsonIgnoreProperties(value = "agent", allowSetters = true)
     private List<Customer> customers = new ArrayList<>();
 
     // constructors

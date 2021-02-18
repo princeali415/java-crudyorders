@@ -77,7 +77,7 @@ public class CustomerServiceImpl implements CustomerServices
         Customer newCustomer = new Customer();
 
         // PUT or a POST
-        if (tempCustomer.getCustcode() != 0 ){     // conditional that syas if we dont have a customer id then
+        if (tempCustomer.getCustcode() != 0 ){     // conditional that says if we dont have a customer id then
             //PUT                                  // we will do a PUT method. If Id is NOT null we do POST
             customersRepository.findById(tempCustomer.getCustcode())
                 .orElseThrow(()-> new EntityNotFoundException("Customer " + tempCustomer.getCustcode()+ " Not Found"));
